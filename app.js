@@ -20,11 +20,29 @@ function agregarAmigo() {
 como un elemento <li> dentro de una lista HTML. 
 Usa innerHTML para limpiar la lista antes de agregar nuevos elementos.*/
 function actualizarListaAmigos() {
-    let listaAmigos = document.getElementById("listaAmigos");
-    listaAmigos.innerHTML = "";
+    borrarListaAmigos();
     let listaAmigosTxt = "";
     for (let x = 0; x < amigos.length; x++) {
         listaAmigosTxt = listaAmigosTxt + `<li>${amigos[x]}</li>\n`;
     }
     listaAmigos.innerHTML = listaAmigosTxt;
+}
+/*Escribe una función que seleccione de manera aleatoria uno de 
+los nombres almacenados en el array amigos. 
+Usa Math.random() y Math.floor() para obtener un índice aleatorio.*/
+function sortearAmigo() {
+    if (amigos.length != 0) {
+        let numeroAleatorio = Math.floor(Math.random() * amigos.length);
+        console.log(`el numero aleatorio es: ${numeroAleatorio}`);
+        let nombreSorteado = amigos[numeroAleatorio];
+        let elementoResultado = document.getElementById("resultado");
+        elementoResultado.innerHTML = `<li>El amigo secreto es: ${nombreSorteado}</li>`;
+        borrarListaAmigos();
+        amigos = "";
+    }
+}
+/* Borrar lista de amigos*/
+function borrarListaAmigos() {
+    let listaAmigos = document.getElementById("listaAmigos");
+    listaAmigos.innerHTML = "";
 }
