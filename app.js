@@ -3,7 +3,7 @@ let amigos = [];
 
 /*Desarrolla una función, que permita al usuario ingresar un nombre en el campo de texto y 
 añadirlo a la lista de amigos creada anteriormente.*/
-function agregarAmigo(){
+function agregarAmigo() {
     let elementoAmigo = document.getElementById("amigo");
     if (elementoAmigo.value.trim() === "") {
         alert("Por favor, inserte un nombre"); // alerta por no ingresar nombre
@@ -12,5 +12,19 @@ function agregarAmigo(){
         console.log(`añadiendo el siguiente nombre ${elementoAmigo.value}`);
         console.log(`Lista amigos secretos [${amigos}]`); 
         elementoAmigo.value = ""; // Borrar el inputbox
+        actualizarListaAmigos();
     }    
+}
+
+/*Crea una función que recorra el array amigos y agregue cada nombre 
+como un elemento <li> dentro de una lista HTML. 
+Usa innerHTML para limpiar la lista antes de agregar nuevos elementos.*/
+function actualizarListaAmigos() {
+    let listaAmigos = document.getElementById("listaAmigos");
+    listaAmigos.innerHTML = "";
+    let listaAmigosTxt = "";
+    for (let x = 0; x < amigos.length; x++) {
+        listaAmigosTxt = listaAmigosTxt + `<li>${amigos[x]}</li>\n`;
+    }
+    listaAmigos.innerHTML = listaAmigosTxt;
 }
