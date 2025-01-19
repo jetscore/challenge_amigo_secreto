@@ -8,6 +8,7 @@ function agregarAmigo() {
     if (elementoAmigo.value.trim() === "") {
         alert("Por favor, inserte un nombre"); // alerta por no ingresar nombre
     } else {
+        (amigos.length === 0) ? borrarResultado() : false; // Borra el resultado si se reinicio
         amigos.push(elementoAmigo.value); // Adicionar nombre a la lista de amigos
         console.log(`añadiendo el siguiente nombre ${elementoAmigo.value}`);
         console.log(`Lista amigos secretos [${amigos}]`); 
@@ -20,12 +21,12 @@ function agregarAmigo() {
 como un elemento <li> dentro de una lista HTML. 
 Usa innerHTML para limpiar la lista antes de agregar nuevos elementos.*/
 function actualizarListaAmigos() {
-    borrarListaAmigos();
+    let listaAmigos = borrarListaAmigos();
     let listaAmigosTxt = "";
     for (let x = 0; x < amigos.length; x++) {
         listaAmigosTxt = listaAmigosTxt + `<li>${amigos[x]}</li>\n`;
     }
-    listaAmigos.innerHTML = listaAmigosTxt;
+    mostrarLista(listaAmigos, listaAmigosTxt);
 }
 /*Escribe una función que seleccione de manera aleatoria uno de 
 los nombres almacenados en el array amigos. 
@@ -38,11 +39,22 @@ function sortearAmigo() {
         let elementoResultado = document.getElementById("resultado");
         elementoResultado.innerHTML = `<li>El amigo secreto es: ${nombreSorteado}</li>`;
         borrarListaAmigos();
-        amigos = "";
+        amigos = [];
     }
 }
 /* Borrar lista de amigos*/
 function borrarListaAmigos() {
     let listaAmigos = document.getElementById("listaAmigos");
     listaAmigos.innerHTML = "";
+    return listaAmigos;
+}
+/* Mostrar la lista de amigos en la pagina */
+function mostrarLista(elemento, lista) {
+    elemento.innerHTML = lista;
+}
+/* Borrar resultado*/
+function borrarResultado() {
+    let resultado = document.getElementById("resultado");
+    resultado.innerHTML = "";
+    return resultado;
 }
